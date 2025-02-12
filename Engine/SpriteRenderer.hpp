@@ -13,6 +13,8 @@ private:
 	int spriteCols_, spriteRows_;
 	Rectangle destinationRect;
 	Rectangle sourceRect;
+	float animationSpeed = 1;
+	float timeElapsed = 0;
 
 public:
 	SpriteRenderer(Sprite* sprite);
@@ -21,6 +23,7 @@ public:
 	void RenderAnimation();
 	void ManageFrames();
 	void SwapSprite(Sprite* sprite);
+	void ChangeAnimSpeed(float speedRatio);
 	void Update() override;
 	void UponCreation() override;
 

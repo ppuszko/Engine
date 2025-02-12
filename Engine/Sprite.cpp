@@ -22,7 +22,9 @@ void Sprite::ClipSpriteSheet(int cols, int rows)
 
 	width_ /= cols;
 	height_ /= rows;
-	origin_ = { width_ / 2.f, height_ / 2.f };
+	origin_ = { width_ / 2.f, height_/2.f  };
+	cols_ = cols;
+	rows_ = rows;
 }
 
 Texture2D* Sprite::GetTexture() 

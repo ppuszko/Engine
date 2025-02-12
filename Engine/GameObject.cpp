@@ -19,10 +19,7 @@ void GameObject::Update()
 
 void GameObject::Clean()
 {
-	for (auto& [key, value] : components_)
-	{
-		value.reset(nullptr);
-	}
+	
 }
 
 

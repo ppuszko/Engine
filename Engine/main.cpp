@@ -18,8 +18,10 @@ int main()
 	{
 		std::shared_ptr<GameObject> gm = std::make_shared<GameObject>("Player");
 	
-		//Sprite s("Assets/bipedal.png");
-		gm->AddComponent<SpriteRenderer>(new Sprite("Assets/bipedal.png"));
+		Sprite s("Assets/bipedal.png");
+		s.ClipSpriteSheet(7, 1);
+		gm->AddComponent<SpriteRenderer>(&s);
+		
 		SetTargetFPS(60);
 
 		while (!WindowShouldClose())

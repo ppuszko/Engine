@@ -35,6 +35,21 @@ public:
 		components_[type] = std::move(component);
 
 	}
+
+	template <typename T>
+	T* GetComponent()
+	{
+		std::type_index type = typeid(T);
+		auto it = components_.find(type);
+		return (it == components_.end() ? nullptr : dynamic_cast<T*>(it->second.get()));
+	}
+
+	template <typename T>
+	void RemoveComponent()
+	{
+		components_.erase(typeid(T));
+	}
+
 	void Update();
 	void Clean();
 

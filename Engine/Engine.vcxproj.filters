@@ -41,5 +41,8 @@
     <ClInclude Include="GameObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
