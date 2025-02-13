@@ -135,6 +135,8 @@
     <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoxCollider.hpp" />
+    <ClInclude Include="CircleCollider.hpp" />
     <ClInclude Include="Collider.hpp" />
     <ClInclude Include="Component.hpp" />
     <ClInclude Include="GameObject.hpp" />

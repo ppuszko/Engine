@@ -8,7 +8,8 @@
 
 #include "Component.hpp"
 #include "SpriteRenderer.hpp"
-
+#include "BoxCollider.hpp"
+#include "Collider.hpp"
 
 class GameObject
 {

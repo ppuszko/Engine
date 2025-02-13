@@ -3,8 +3,10 @@
 #include <vector>
 #include <memory>
 
+#include "Component.hpp"
 
-class Collider
+template <typename Derived, typename Shape>
+class Collider : public Component
 {
 protected:
 	int width_, height_;
@@ -12,6 +14,7 @@ protected:
 
 public:
 	static std::vector<Collider*> allColliders;
+	Shape shape;
 
 	Collider()
 	{
@@ -23,7 +26,10 @@ public:
 		allColliders.erase(std::remove(allColliders.begin(), allColliders.end(), this), allColliders.end());
 	}
 
-	virtual bool CheckCollision(Collider* collider) = 0;
+	virtual bool CheckCollision(Collider* collider)
+	{
+		static_cast<Derived*>(this)->CheckCollision(collider);
+	}
 };
-
-std::vector<Collider*> Collider::allColliders;
+template <typename Derived, typename Shape>
+std::vector<Collider<Derived, Shape>*> Collider<Derived, Shape>::allColliders;

@@ -44,5 +44,11 @@
     <ClInclude Include="Collider.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BoxCollider.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCollider.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
