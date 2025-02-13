@@ -2,6 +2,8 @@
 #include <raylib.h>
 
 #include "GameObject.hpp"
+#include "BoxCollider.hpp"
+#include "RigidBody.hpp"
 
 int main()
 {
@@ -21,6 +23,8 @@ int main()
 		Sprite s("Assets/bipedal.png");
 		s.ClipSpriteSheet(7, 1);
 		gm->AddComponent<SpriteRenderer>(&s);
+		gm->AddComponent<BoxCollider>();
+		gm->AddComponent<RigidBody>(5);
 		
 		SetTargetFPS(60);
 

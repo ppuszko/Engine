@@ -23,7 +23,7 @@ void SpriteRenderer::RenderAnimation()
 {
 	//if(managedTexture_ == nullptr) throw std::runtime_error("Sprite* is null. Failed to initialize sprite renderer");
 	DrawTexturePro(*managedTexture_, sourceRect, destinationRect, spriteOrigin_, 0, WHITE);
-	DrawRectangleLines(destinationRect.x - spriteOrigin_.x, destinationRect.y - spriteOrigin_.y, spriteWidth_, spriteHeight_, RED);
+	//DrawRectangleLines(destinationRect.x - spriteOrigin_.x, destinationRect.y - spriteOrigin_.y, spriteWidth_, spriteHeight_, RED);
 	ManageFrames();
 }
 
@@ -66,6 +66,7 @@ void SpriteRenderer::ChangeAnimSpeed(float speedRatio)
 void SpriteRenderer::Update()
 {
 	RenderAnimation();
+	destinationRect = { owner->position_.x, owner->position_.y, spriteWidth_ * owner->scale_.x, spriteHeight_ * owner->scale_.y };
 }
 
 void SpriteRenderer::UponCreation()

@@ -129,8 +129,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
@@ -140,6 +142,7 @@
     <ClInclude Include="Collider.hpp" />
     <ClInclude Include="Component.hpp" />
     <ClInclude Include="GameObject.hpp" />
+    <ClInclude Include="RigidBody.hpp" />
     <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="SpriteRenderer.hpp" />
   </ItemGroup>

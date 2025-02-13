@@ -2,17 +2,18 @@
 #include <raylib.h>
 #include <vector>
 #include <memory>
+#include <variant>
 
-#include "Component.hpp"
 
-template <typename Derived, typename Shape>
-class Collider : public Component
+
+class Collider 
 {
 protected:
 	int width_, height_;
 	
 
 public:
+	using Shape = std::variant<float, Rectangle>;
 	static std::vector<Collider*> allColliders;
 	Shape shape;
 
@@ -26,10 +27,7 @@ public:
 		allColliders.erase(std::remove(allColliders.begin(), allColliders.end(), this), allColliders.end());
 	}
 
-	virtual bool CheckCollision(Collider* collider)
-	{
-		static_cast<Derived*>(this)->CheckCollision(collider);
-	}
+	virtual bool CheckCollision(Collider* collider) = 0;
+	virtual void ShowCollider() = 0;
 };
-template <typename Derived, typename Shape>
-std::vector<Collider<Derived, Shape>*> Collider<Derived, Shape>::allColliders;
+

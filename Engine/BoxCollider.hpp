@@ -1,15 +1,22 @@
+#pragma once
 #include <typeindex>
 
-
 #include "Collider.hpp"
-#include "GameObject.hpp"
+#include "Component.hpp"
+
 #include "CircleCollider.hpp"
 
-class BoxCollider : public Collider<BoxCollider, Rectangle>
+
+
+class BoxCollider : public Collider, public Component
 {
 public: 
+	BoxCollider()
+	{
+		shape = Rectangle{ 0, 0, 0, 0 };
+	}
 		
-	bool CheckCollision(Collider* collider) 
+	bool CheckCollision(Collider* collider) override
 	{
 		if (collider != this && collider!=nullptr)
 		{
@@ -30,19 +37,58 @@ public:
 
 	void UponCreation() override
 	{
-		shape.width = 32, shape.height = 32;
-		shape.x = owner->position_.x - shape.width / 2;
-		shape.y = owner->position_.y - shape.height;
+		if (Rectangle* rect = std::get_if<Rectangle>(&shape))
+		{
+			if (owner != nullptr)
+			{
+				rect->width = 64, rect->height = 64;
+				rect->x = owner->position_.x - rect->width / 2;
+				rect->y = owner->position_.y - rect->height / 2;
+			}
+			
+		}
+		Resize(50, 50);
+		
 	}
 	
+	void ShowCollider() override
+	{
+		const Rectangle* rect1 = std::get_if<Rectangle>(&shape);
+		DrawRectangleLines(rect1->x, rect1->y, rect1->width, rect1->height, RED);
+	}
+
+	void Update() override
+	{
+		if (Rectangle* rect = std::get_if<Rectangle>(&shape))
+		{
+			if (owner != nullptr)
+			{
+				rect->x = owner->position_.x - rect->width / 2;
+				rect->y = owner->position_.y - rect->height / 2;
+			}
+
+		}
+	}
+
+	void Resize(int width, int height)
+	{
+		Rectangle* rect1 = std::get_if<Rectangle>(&shape);
+		rect1->width = width;
+		rect1->height = height;
+
+	}
 
 private:
 	bool CheckWithRec(BoxCollider* collider)
 	{
-		return CheckCollisionRecs(this->shape, collider->shape);
+		const Rectangle* rect1 = std::get_if<Rectangle>(&shape);
+		const Rectangle* rect2 = std::get_if<Rectangle>(&collider->shape);
+		return CheckCollisionRecs(*rect1, *rect2);
 	}
 	bool CheckWithCircle(CircleCollider* collider)
 	{
-		return CheckCollisionCircleRec(collider->owner->position_, collider->shape, this->shape);
+		const Rectangle* rect = std::get_if<Rectangle>(&shape);
+		const float* radius = std::get_if<float>(&collider->shape);
+		return CheckCollisionCircleRec(collider->owner->position_, *radius, *rect);
 	}
 };
